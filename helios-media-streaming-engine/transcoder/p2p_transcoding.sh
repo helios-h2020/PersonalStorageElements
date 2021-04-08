@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/usr/local/bin/ffmpeg -i rtmp://localhost:1935/$1/$2 -r 30 -filter_complex "[v:0]split=2[vtemp001][vtemp002];[vtemp001]scale=960:trunc(ow/a/2)*2[vout001];[vtemp002]scale=1280:trunc(ow/a/2)*2[vout002]" -c:v libx264 -crf 20 -g 30 -sc_threshold 0 -map [vout001] -c:v:0 libx264 -b:v:0 4000k -map [vout002] -c:v:1 libx264 -b:v:1 8000k -map a:0 -c:a aac -b:a 128k -ac 2 -f hls -hls_time 2 -hls_list_size 5 -master_pl_name $2.m3u8 -hls_flags delete_segments -var_stream_map "v:0,a:0 v:1,a:0" /opt/data/hls/$2_%v.m3u8 2> /opt/data/logs/$2.txt

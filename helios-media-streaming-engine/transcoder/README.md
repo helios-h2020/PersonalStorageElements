@@ -1,0 +1,1 @@
+docker run -d --name helios-media-transcoder --restart always --network video-net --mount 'type=volume,src=media-streaming-engine_cache-content,dst=/opt/data/' -p 1935:1935 ignaciodomin/media-transcoder:helios

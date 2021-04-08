@@ -1,0 +1,1 @@
+docker run -d --name helios-media-cache --restart always --mount 'type=volume,src=media-streaming-engine_cache-content,dst=/opt/data/' -p 800:800 ignaciodomin/media-cache:helios
