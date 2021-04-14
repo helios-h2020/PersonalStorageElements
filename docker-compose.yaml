@@ -1,7 +1,6 @@
 version: "3"
 
 services:
-
   ###LIVE-STREAMING SERVICES###
   #Transcoder: Takes the video from the camera and generates the video chunks and HLS playlists
   transcoder:
@@ -48,10 +47,8 @@ services:
     volumes:
       - tus-content:${TUS_CONTAINER_PATH}
 
-
 volumes:
   #Volume created to save the video segments and HLS playlists
   cache-content: {}
   #Volume created to store the files uploaded with the tus server
   tus-content: {}
-
