@@ -60,6 +60,38 @@ Another way to deploy the containers is using docker run like:
 /* If the certificates created for this image are expired, you can replace them with your own certificate or create a self-signed new one using openssl:
 `openssl req -newkey rsa:2048 -x509 -sha256 -days 3650 -nodes -out cert.pem -keyout key.pem`
 
+### 3. P2P MEDIASTREAM
+
+- Pull the image from repository: `docker pull heliosh2020/p2p-mediastream:latest`
+
+You will need to create a 'config.json' file like:
+
+```
+{
+  "servers": [{
+      "server": {
+        "port": 49199,
+        "host": "0.0.0.0"
+      },
+      "websockets": {
+        "path": "/*",
+        "maxPayloadLength": 65536,
+        "idleTimeout": 240,
+        "compression": 1,
+        "maxConnections": 0
+      }
+    }
+  ],
+
+  "tracker": {
+    "maxOffers": 20,
+    "announceInterval": 120
+  }
+}
+```
+
+- Run the container: `docker run -d -p 49199:49199 -v "$(pwd)"/config.json:/app/config.json:ro heliosh2020/p2p-mediastream`
+
 ### Configuration of the certificates: 
 Some of the containers need HTTPS connectivity, to provide this, it is necessary to create or use a valid TLS certificate (if you don't have one, you can create your own certificate with LetsEncrypt - https://letsencrypt.org/es/getting-started/). After create the certificates (`cert.pem` and `key.pem`), these should be copied to the `certs` forlder in the root of the repository.
 
