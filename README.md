@@ -35,6 +35,31 @@ To facilitate the deployment of the containers, a docker-compose file is include
 docker-compose up -d
 ```
 
+Another way to deploy the containers is using docker run like:
+
+### 1. LIVE STREAMING 
+
+#### 1.1 Media Transcoder
+
+- Pull the image from repository: `docker pull heliosh2020/media-transcoder:v2.0`
+
+- Run the container: `sudo docker run -d -v cache-content:/opt/data/ -p 1935:1935 --name media-transcoder heliosh2020/media-transcoder:v2.0`
+	
+#### 1.2. Media Cache
+
+- Pull the image from repository: `docker pull heliosh2020/media-cache:v2.0`
+
+- Run the container: `sudo docker run -d -v cache-content:/opt/data/ -p 800:800 --name media-cache heliosh2020/media-cache:v2.0`
+	
+### 2. MEDIA SIGNALING
+
+- Pull the image from repository: `docker pull heliosh2020/media-signaling:v2.0`
+
+- Run the container: `sudo docker run -d -v $(pwd)/certs:/app/certs/ -p 11794:11794 --name media-signaling heliosh2020/media-signaling:v2.0`
+	
+/* If the certificates created for this image are expired, you can replace them with your own certificate or create a self-signed new one using openssl:
+`openssl req -newkey rsa:2048 -x509 -sha256 -days 3650 -nodes -out cert.pem -keyout key.pem`
+
 ### Configuration of the certificates: 
 Some of the containers need HTTPS connectivity, to provide this, it is necessary to create or use a valid TLS certificate (if you don't have one, you can create your own certificate with LetsEncrypt - https://letsencrypt.org/es/getting-started/). After create the certificates (`cert.pem` and `key.pem`), these should be copied to the `certs` forlder in the root of the repository.
 
