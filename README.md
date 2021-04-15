@@ -92,6 +92,12 @@ You will need to create a 'config.json' file like:
 
 - Run the container: `docker run -d -p 49199:49199 -v "$(pwd)"/config.json:/app/config.json:ro heliosh2020/p2p-mediastream`
 
+### 4. TUS 
+
+- Create a docker volume: `docker volume create helios-tus`
+
+- Run the container from the oficial tusproject/tusd image: `sudo docker run -d -p 1080:1080 --mount 'type=volume,src=helios-tus,dst=/srv/data/' tusproject/tusd "tusd --hooks-dir /srv/tusd-hooks"`
+
 ### Configuration of the certificates: 
 Some of the containers need HTTPS connectivity, to provide this, it is necessary to create or use a valid TLS certificate (if you don't have one, you can create your own certificate with LetsEncrypt - https://letsencrypt.org/es/getting-started/). After create the certificates (`cert.pem` and `key.pem`), these should be copied to the `certs` forlder in the root of the repository.
 
