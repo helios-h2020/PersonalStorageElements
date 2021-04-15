@@ -22,9 +22,9 @@ services:
   #Signaling
   signaling:
     container_name: helios-signaling
-    image: heliosh2020/media-signaling:v1.0
+    image: heliosh2020/media-signaling:v2.0
     ports:
-      - "1794:1794"
+      - "11794:11794"
     volumes:
       - ${CERTS_HOST_PATH}:${CERTS_CONTAINER_PATH}
 
