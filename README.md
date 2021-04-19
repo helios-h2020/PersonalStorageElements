@@ -98,6 +98,16 @@ You will need to create a 'config.json' file like:
 
 - Run the container from the oficial tusproject/tusd image: `sudo docker run -d -p 1080:1080 --mount 'type=volume,src=helios-tus,dst=/srv/data/' tusproject/tusd "tusd --hooks-dir /srv/tusd-hooks"`
 
+### 5. COTURN
+
+- Source DockerHub repository: https://hub.docker.com/r/zolochevska/turn-server/
+
+- Source GitHub repository: https://github.com/coturn/coturn
+
+- Run the container: `sudo docker run -d -p 3478:3478 -p 3478:3478/udp --restart=always zolochevska/turn-server username password realm`
+
+- If you don't have a domain in your host, 'realm' parameter will be your public IP.
+
 ### Configuration of the certificates: 
 Some of the containers need HTTPS connectivity, to provide this, it is necessary to create or use a valid TLS certificate (if you don't have one, you can create your own certificate with LetsEncrypt - https://letsencrypt.org/es/getting-started/). After create the certificates (`cert.pem` and `key.pem`), these should be copied to the `certs` forlder in the root of the repository.
 
