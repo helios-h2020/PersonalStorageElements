@@ -22,7 +22,7 @@ services:
   #Signaling
   signaling:
     container_name: helios-signaling
-    image: heliosh2020/media-signaling:v2.0
+    image: heliosh2020/media-signaling:v2.2
     ports:
       - "11794:11794"
     volumes:
