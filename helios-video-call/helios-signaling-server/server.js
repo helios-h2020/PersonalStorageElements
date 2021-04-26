@@ -16,9 +16,10 @@ const options = {
 };
 
 const fileServer = new Server();
-const server = https.createServer(options, function(req, res) {
-  fileServer.serve(req, res);
-}).listen(11794);
+const requestListener = fileServer.serve.bind(fileServer)
+
+const server = https.createServer(options, requestListener)
+.listen(11794);
 
 console.log('Starting...')
 
@@ -57,7 +58,7 @@ io.of(/^\/\w+$/).on('connection', function(socket) {
     return socket.emit('created', name, socket.id);
   }
 
-  if (size <= 4) {
+  if (size <= 6) {
     socket.broadcast.emit('join', socket.id);
 
     console.log('Client ID ' + socket.id + ' joined room ' + name);

@@ -1,4 +1,5 @@
-FROM node:13-alpine
+# FROM node:current-alpine
+FROM ignaciodomin/helios-signaling:0.3
 
 # Grant necessary permission into node_module and app folders to execute npm install
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
@@ -13,6 +14,6 @@ RUN npm install
 
 COPY --chown=node:node . .
 
-EXPOSE 1794
+EXPOSE 11794
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "server.js" ]
