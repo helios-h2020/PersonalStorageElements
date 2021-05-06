@@ -53,7 +53,7 @@ Another way to deploy the containers is using docker run like:
 	
 ### 2. MEDIA SIGNALING
 
-- Pull the image from repository: `docker pull heliosh2020/media-signaling:v2.1`
+- Pull the image from repository: `docker pull heliosh2020/media-signaling:v2.2`
 
 - Run the container: `sudo docker run -d -v $(pwd)/certs:/app/certs/ -p 11794:11794 --name media-signaling heliosh2020/media-signaling:v2.1`
 	
