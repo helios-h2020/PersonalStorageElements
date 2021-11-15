@@ -55,7 +55,7 @@ Another way to deploy the containers is using docker run like:
 
 - Pull the image from repository: `docker pull heliosh2020/media-signaling:v2.2`
 
-- Run the container: `sudo docker run -d -v $(pwd)/certs:/app/certs/ -p 11794:11794 --name media-signaling heliosh2020/media-signaling:v2.1`
+- Run the container: `sudo docker run -d -v $(pwd)/certs:/app/certs/ -p 11794:11794 --name media-signaling heliosh2020/media-signaling:v2.2`
 	
 /* If the certificates created for this image are expired, you can replace them with your own certificate or create a self-signed new one using openssl:
 `openssl req -newkey rsa:2048 -x509 -sha256 -days 3650 -nodes -out cert.pem -keyout key.pem`
